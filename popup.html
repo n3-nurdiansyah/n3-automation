@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            width: 240px;
+            padding: 15px;
+            font-family: system-ui, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 12px;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: opacity 0.2s;
+            font-size: 13px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .btn-blue {
+            background: #2563eb;
+        }
+
+        .btn-green {
+            background: #16a34a;
+        }
+
+        .btn-purple {
+            background: #7c3aed;
+        }
+
+        .btn-cyan {
+            background: #0891b2;
+        }
+
+        .btn-red {
+            background: #dc2626;
+        }
+
+        .btn-orange {
+            background: #f97316;
+        }
+
+        /* Layout untuk tombol Iya & Tidak bersebelahan */
+        .row-btn {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="clickBtn" class="btn-green">Klik View Bukti APL02</button>
+
+    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
+
+    <button id="fillBtn" class="btn-blue">Isi Input Text "oke"</button>
+
+    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
+
+    <div class="row-btn">
+        <button id="checkIyaBtn" class="btn-cyan">✔ Semua "Iya"</button>
+        <button id="checkTidakBtn" class="btn-red">✖ Semua "Tidak"</button>
+    </div>
+
+    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
+
+    <button id="fillTextareaBtn" class="btn-purple">Isi Semua Textarea</button>
+
+    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
+
+    <button id="checkMatriksBtn" class="btn-orange">✔ Centang Observasi & Tertulis AK02</button>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
