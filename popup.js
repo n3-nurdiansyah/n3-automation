@@ -103,3 +103,99 @@ function checkMultipleColumns(indices) {
         }
     });
 }
+
+// --- FITUR 6: PROSES OTOMATIS AK06 ---
+document.getElementById('btnAk06').addEventListener('click', async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    chrome.scripting.executeScript({ target: { tabId: tab.id }, func: prosesAk06 });
+});
+
+function prosesAk06() {
+    // 1. Ceklis semua checkbox di halaman (termasuk membuka paksa jika statusnya disabled)
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        if (!cb.checked) {
+            cb.removeAttribute('disabled');
+            cb.checked = true;
+            cb.dispatchEvent(new Event('change', { bubbles: true }));
+            cb.dispatchEvent(new Event('click', { bubbles: true }));
+        }
+    });
+
+    // 2. Isi semua textarea dengan tanda "-"
+    document.querySelectorAll('textarea').forEach(textarea => {
+        textarea.value = '-';
+        textarea.dispatchEvent(new Event('input', { bubbles: true }));
+        textarea.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+
+    // 3. Pilih opsi ke-2 pada setiap tag <select>
+    document.querySelectorAll('select').forEach(select => {
+        // Memastikan dropdown memiliki minimal 2 opsi agar tidak error
+        if (select.options.length > 1) {
+            // Dalam array/index JavaScript, 0 adalah opsi pertama ("Pilih..."), 
+            // 1 adalah opsi kedua ("L/IA.03 - T/DPT")
+            select.selectedIndex = 1;
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+
+    // 4. Klik tombol yang bertipe "button"
+    const btnTypeButton = document.querySelector('button[type="button"]');
+    if (btnTypeButton) {
+        btnTypeButton.click();
+    }
+}
+
+// --- FITUR 7: PILIH TUK ---
+document.getElementById('btnPilihTuk').addEventListener('click', async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    chrome.scripting.executeScript({ target: { tabId: tab.id }, func: prosesPilihTuk });
+});
+
+function prosesPilihTuk() {
+    // Cari semua elemen dropdown <select>
+    document.querySelectorAll('select').forEach(select => {
+        // Cari opsi di dalam dropdown tersebut yang nilainya persis "Sesuai"
+        const opsiSesuai = Array.from(select.options).find(opt => opt.value === 'Sesuai');
+
+        // Jika opsi "Sesuai" ditemukan, pilih opsi tersebut
+        if (opsiSesuai) {
+            select.value = 'Sesuai';
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+}
+
+// --- FITUR 8: SAVE TUK ---
+document.getElementById('btnSaveTuk').addEventListener('click', async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    chrome.scripting.executeScript({ target: { tabId: tab.id }, func: prosesSaveTuk });
+});
+
+function prosesSaveTuk() {
+    // 1. Lakukan proses yang persis sama dengan "Pilih TUK"
+    document.querySelectorAll('select').forEach(select => {
+        const opsiSesuai = Array.from(select.options).find(opt => opt.value === 'Sesuai');
+        if (opsiSesuai) {
+            select.value = 'Sesuai';
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+
+    // 2. Cari tombol dengan atribut type="submit"
+    const btnSubmit = document.querySelector('button[type="submit"]');
+
+    if (btnSubmit) {
+        // 3. Klik tombol submit
+        btnSubmit.click();
+
+        // 4. Tunggu 3 detik (3000 milidetik), lalu jalankan perintah kembali ke halaman sebelumnya
+        setTimeout(() => {
+            window.history.back();
+        }, 3000);
+
+    } else {
+        // Beri peringatan jika tombol submit tidak ada di halaman tersebut
+        alert('Tombol Submit tidak ditemukan!');
+    }
+}

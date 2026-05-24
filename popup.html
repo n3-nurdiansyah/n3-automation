@@ -53,7 +53,12 @@
             background: #f97316;
         }
 
-        /* Layout untuk tombol Iya & Tidak bersebelahan */
+        .btn-teal {
+            background: #0d9488;
+        }
+
+        /* Warna baru untuk AK06 */
+
         .row-btn {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -64,25 +69,31 @@
 
 <body>
     <button id="clickBtn" class="btn-green">Klik View Bukti APL02</button>
-
     <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
 
     <button id="fillBtn" class="btn-blue">Isi Input Text "oke"</button>
+    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
+
+    <div class="row-btn">
+        <button id="checkIyaBtn" class="btn-cyan">✔ Semua</button>
+        <button id="checkTidakBtn" class="btn-red">✖ Semua</button>
+    </div>
+    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
+
+    <button id="fillTextareaBtn" class="btn-purple">Isi Semua Textarea</button>
+    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
+
+    <button id="checkMatriksBtn" class="btn-orange">✔ Centang Observasi & Tertulis AK02</button>
+    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
+
+    <button id="btnAk06" class="btn-teal">🚀 Proses Otomatis AK06</button>
 
     <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
 
     <div class="row-btn">
-        <button id="checkIyaBtn" class="btn-cyan">✔ Semua "Iya"</button>
-        <button id="checkTidakBtn" class="btn-red">✖ Semua "Tidak"</button>
+        <button id="btnPilihTuk" class="btn-cyan">Pilih TUK</button>
+        <button id="btnSaveTuk" class="btn-blue">Save TUK</button>
     </div>
-
-    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
-
-    <button id="fillTextareaBtn" class="btn-purple">Isi Semua Textarea</button>
-
-    <hr style="width: 100%; border: 0.5px solid #ccc; margin: 5px 0;">
-
-    <button id="checkMatriksBtn" class="btn-orange">✔ Centang Observasi & Tertulis AK02</button>
 
     <script src="popup.js"></script>
 </body>
